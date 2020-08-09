@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='../stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css">
+    <script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
+    <script src="../javascripts/menu.js"></script>
+</head>
+
+<body>
+    <%- include('./layouts/navbar', {isFileUploadEnabled: false, path: "root"}); -%>
+
+        <!-- Add directory Modal -->
+        <%- include('./layouts/modal', {parentId: null, results: result}); -%>
+
+            <% if (result.length == 0) { %>
+                <%- include('./pages/noFile')-%>
+                    <% } %>
+
+                        <div class="folder-container">
+                            <% result.forEach(function(dir){ const url = "http://localhost:3000/common/list/" + dir._id;%>
+                                <div class="context-menu-one" id="<%= JSON.stringify({ type: " directory ", id: dir._id }) %>">
+                                    <a href=<%=url %>>
+                                      <!-- <span class="fa fa-folder" style="font-size: 50px;" aria-hidden="true"
+                                        title=<%= dir.directoryName %>></span>&nbsp;&nbsp;<%= dir.directoryName %> -->
+                                        <div class="folder-item">
+                                          <img class="folder-icon" src="/images/folder.png" alt="">
+                                          <%= dir.directoryName %>
+                                        </div>
+                                        <hr>
+                                    </a>
+                                </div>
+                                <% }); %>
+
+                        </div>
+
+</body>
+
+</html>

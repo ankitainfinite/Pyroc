@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Pyroc
+    </title>
+    <link rel='stylesheet' href='../stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+    <nav style="background-color : black !important" class="navbar navbar-inverse bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="/images/logo.jpeg" width="200" height="55" alt="">
+        </a>
+    </nav>
+    <div class="folder-container">
+        <div style="display: flex;justify-content: space-around;">
+            <div style="margin-right: 20px">
+                <div class="tile">
+                    <div>
+                        <img style="margin-right: 20px" src="/images/calendar.png" width="40" alt="">
+                    </div>
+                    <div>
+                        Training Calendar
+                    </div>
+                </div>
+                <a href="/library">
+                    <div class="tile">
+                        <div>
+                            <img style="margin-right: 20px" src="/images/library.png" width="40" alt="">
+                        </div>
+                        <div>
+                            Library
+                        </div>
+                    </div>
+                </a>
+                <div class="tile">
+                    <div>
+                        <img style="margin-right: 20px" src="/images/file.png" width="40" alt="">
+                    </div>
+                    <div>
+                        Employee File
+                    </div>
+                </div>
+                <div class="tile">
+                    <div>
+                        <img style="margin-right: 20px" src="/images/credential.png" width="40" alt="">
+                    </div>
+                    <div>
+                        Credentials
+                    </div>
+                </div>
+                <div class="tile">
+                    <div>
+                        <img style="margin-right: 20px" src="/images/training.png" width="40" alt="">
+                    </div>
+                    <div>
+                        Assign Training
+                    </div>
+                </div>
+                <div class="tile">
+                    <div>
+                        <img style="margin-right: 20px" src="/images/record.png" width="40" alt="">
+                    </div>
+                    <div>
+                        Record Training
+                    </div>
+                </div>
+            </div>
+            <div style="min-width:480px">
+                <div class="card">
+                    <h3 style="font-weight: 200;font-size: 22px;text-align:center">Assignments & Communications</h3>
+                    <div style="margin-top: 20px;text-align:center" class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <p><b>Assignments</b></p>
+                                <p>Assignment 2</p>
+                                <p>Assignment 3</p>
+                                <p>Assignment 3</p>
+                            </div>
+                            <div class="col-sm">
+                                <p><b>Due Date</b></p>
+                                <p>07-30-2020</p>
+                                <p>07-25-2020</p>
+                                <p>07-26-2020</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top:20px">
+                    <h3 style="font-weight: 200;font-size: 22px;text-align:center">Dashboard</h3>
+                    <div id="chart_div" style="width: 400px; height: 212px;"></div>
+                </div>
+
+
+            </div>
+            <div style="min-width: 480px">
+                <div class="card">
+                    <h3 style="font-weight: 200;font-size: 22px;text-align:center">Action Summary</h3>
+                    <div style="margin-top: 20px;text-align:center" class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <p><b>Actions</b></p>
+                                <p>Action Element</p>
+                                <p>Action Element 2</p>
+                                <p>Action Element 3</p>
+                            </div>
+                            <div class="col-sm">
+                                <p><b>Due Date</b></p>
+                                <p>07-30-2020</p>
+                                <p>07-25-2020</p>
+                                <p>07-26-2020</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:20px" class="card">
+                    <h3 style="font-weight: 200;font-size: 22px;text-align:center">Resource Board</h3>
+                    <div style="margin-top: 20px;text-align:center" class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <p><b>Resource Items</b></p>
+                                <p>Resource Item 1</p>
+                                <p>Resource Item 2</p>
+                                <p>Resource Item 3</p>
+                            </div>
+                            <div class="col-sm">
+                                <p><b>Due Date</b></p>
+                                <p>07-30-2020</p>
+                                <p>07-25-2020</p>
+                                <p>07-26-2020</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawVisualization);
+
+        function drawVisualization() {
+            // Some raw data (not necessarily accurate)
+            var data = google.visualization.arrayToDataTable([
+                ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
+                ['2004/05', 165, 938, 522, 998, 450, 614.6],
+                ['2005/06', 135, 1120, 599, 1268, 288, 682],
+                ['2006/07', 157, 1167, 587, 807, 397, 623],
+                ['2007/08', 139, 1110, 615, 968, 215, 609.4],
+                ['2008/09', 136, 691, 629, 1026, 366, 569.6]
+            ]);
+
+            var options = {
+                title: 'Performance',
+                vAxis: {
+                    title: 'Trainings'
+                },
+                hAxis: {
+                    title: 'Month'
+                },
+                seriesType: 'bars',
+                series: {
+                    5: {
+                        type: 'line'
+                    }
+                }
+            };
+
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+
+</html>

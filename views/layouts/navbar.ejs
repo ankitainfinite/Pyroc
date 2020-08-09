@@ -1,0 +1,85 @@
+<style>
+    .title {
+        margin-left: 50px;
+        font-weight: 200;
+        font-size: 24px;
+    }
+    
+    .main-title {
+        font-weight: 400;
+    }
+</style>
+<!-- Just an image -->
+<nav style="background-color : black !important" class="navbar navbar-inverse bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="/images/logo.jpeg" width="200" height="55" alt="">
+    </a>
+</nav>
+<!-- text-align:right;margin-right: 50px;margin-top:35px -->
+<div style="display:flex;justify-content: space-between;margin: 20px 50px">
+    <h1 class="main-title">Library</h1>
+    <div style="align-self: center; display: flex">
+        <button style="margin-right: 20px" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addFormModal">
+            <i class="fa fa-plus"></i> New Folder</button>
+        <% if(isFileUploadEnabled) {%>
+            <form method="POST" action="/file/create" enctype="multipart/form-data" onsubmit="return validateDuplicateFile()">
+                <input type="hidden" name="directoryId" value=<%=id%>>
+                <input type="file" name="file" id="file1" class="form-control mr-sm-2 custom-file custom-file-input" onchange="onFileSelect(this)" style="display: none;">
+                <button class="btn btn-outline-success my-2 my-sm-0" onclick="chooseFile()" type="button"><i
+                    class="fa fa-upload" aria-hidden="true"></i>
+            </button>
+                <button class="btn btn-outline-success my-2 my-sm-0" id="uploadBtn" type="submit" disabled>Upload</button>
+            </form>
+            <%}%>
+    </div>
+</div>
+
+<h2 class="title">
+    <i class="fa fa-angle-right"></i>
+    <%=path%>
+</h2>
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="/">File Manager</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#addFormModal">Create Directory <span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <% if(isFileUploadEnabled) {%>
+        <input type="hidden" id="fileResults" value="<%= JSON.stringify(filesResult); %> ">
+        <form class="form-inline my-2 my-lg-0" method="POST" action="/file/create" enctype="multipart/form-data"
+            onsubmit="return validateDuplicateFile()">
+            <input type="hidden" name="directoryId" value=<%= id%>>
+
+            <input type="file" name="file" id="file1" class="form-control mr-sm-2 custom-file custom-file-input"
+                onchange="onFileSelect(this)" style="display: none;">
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="chooseFile()" type="button"><i
+                    class="fa fa-upload" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-outline-success my-2 my-sm-0" id="uploadBtn" type="submit" disabled>Upload</button>
+        </form>
+        <% } %>
+    </div>
+</nav> 
+
+<h5 class="font-weight-bold" style="margin-top: 20px;">Folder Name:
+    <%= path %>
+</h5> -->
+
+<script>
+    function chooseFile() {
+        let file = document.getElementById("file1");
+        file.click();
+    }
+</script>
+<script src="../../javascripts/validations.js"></script>
